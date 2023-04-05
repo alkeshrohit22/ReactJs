@@ -1,0 +1,63 @@
+/** banner section **/
+
+.banner_main {
+    background: url(../../../public/images/banner.jpg);
+    padding: 97px 0px 0px 0px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    min-height: 698px;
+}
+
+.blodark {
+    color: #183661;
+    font-family: 'Righteous', cursive;
+    font-size: 115px;
+}
+
+.text-bg {
+    text-align: left;
+}
+
+.ban_img {
+    margin-right: -45px;
+    position: absolute;
+}
+
+.text-bg h1 {
+    color: #f2c119;
+    font-size: 116px;
+    line-height: 120px;
+    padding-bottom: 50px;
+    font-weight: 400;
+}
+
+.text-bg p {
+    color: #2a2a2c;
+    line-height: 30px;
+    font-size: 33px;
+    margin-bottom: 50px;
+}
+
+.text-bg .read_more {
+    text-decoration: none;
+    font-weight: 500;
+    background: #1d37fd;
+    color: #fff !important;
+    border-radius: 17px;
+    margin-right: 25px;
+    padding: 16px;
+    max-width: 210px;
+}
+
+.text-bg .read_more:hover {
+    background: #fcc10e;
+    color: #000 !important;
+}
+
+.ban_img figure {
+    margin: -54px;
+}
+
+.ban_img figure img {
+    width: 100%;
+}

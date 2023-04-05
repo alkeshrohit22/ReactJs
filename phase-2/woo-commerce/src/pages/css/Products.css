@@ -1,0 +1,72 @@
+
+.project {
+    background-color: white;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 90px 0 90px 0;
+}
+
+.project .titlepage {
+    text-align: left;
+}
+
+.project .titlepage h2 {
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    border-bottom: #f2c119 solid 5px;
+}
+
+.project .titlepage p {
+    font-size: 17px;
+    line-height: 30px;
+    font-weight: 400;
+    padding-top: 10px;
+    color: #fff;
+}
+
+.product_main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.project .project_box {
+    text-align: center;
+    max-width: 17.3%;
+    margin: 0 15px 20px 15px;
+}
+
+.dark_white_bg {
+    background: #f2f2f2;
+    height: 257px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.project .project_box h3 {
+    color: #1c1c1b;
+    font-size: 15px;
+    line-height: 20px;
+    padding: 22px 0px 0px 0px;
+    text-align: left;
+}
+
+.project .read_more {
+    text-decoration: none;
+    margin-top: 50px !important;
+    margin: 0 auto;
+    display: block;
+    text-transform: none;
+    color: #fff;
+    background: #183661;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 40px;
+}
+
+.project .read_more:hover {
+    text-decoration: none;
+    background-color: #f2c119;
+}

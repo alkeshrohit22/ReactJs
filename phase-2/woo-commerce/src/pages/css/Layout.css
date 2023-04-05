@@ -1,0 +1,21 @@
+.my-form {
+    display: flex;
+}
+
+.form-input {
+    margin-left: 200px;
+}
+
+.my-nav {
+    background-color: #ffd700 !important;
+}
+
+.my-ul {
+    /*margin-left: 45px !important;*/
+}
+
+.my-ul .my-list {
+    margin-left: 35px;
+    font-size: 18px;
+    font-weight: bold;
+}
