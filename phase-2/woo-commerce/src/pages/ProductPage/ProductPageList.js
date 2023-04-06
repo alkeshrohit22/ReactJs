@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import '../css/Products.css'
+import '../css/ProductListing.css'
 
 function ProductPageList() {
     // const [data, setData] = useState(null);
@@ -32,23 +33,15 @@ function ProductPageList() {
         setCartItems(prevCartItems => {
             const existingItem = prevCartItems.find(item => item.id === product.id);
             if (existingItem) {
-                console.log('if part');
                 // Update quantity of existing item
                 return prevCartItems.map(item => {
                     if (item.id === product.id) {
-                        // console.log([{...item, quantity: item.quantity + 1}])
-                        setCartItems([{...item, quantity: item.quantity + 1}])
                         return {...item, quantity: item.quantity + 1};
                     }
-                    // console.log(item);
-                    setCartItems([item]);
                     return item;
 
                 });
             } else {
-                // Add new item to cart
-                // console.log([...prevCartItems, {...product, quantity: 1}])
-                setCartItems([...prevCartItems, {...product, quantity: 1}]);
                 return [...prevCartItems, {...product, quantity: 1}];
             }
         });
@@ -57,17 +50,33 @@ function ProductPageList() {
 
     return (
         <>
-            {product.map((pro) => (
-                <div className="project_box " key={pro.id}>
-                    <div className="dark_white_bg"><img src={pro.image}/></div>
-                    <h3>{pro.title}<br/> <strong>{pro.price}</strong></h3>
-                    <button onClick={() => addToCart(pro)}>Add to Cart</button>
+            <div id="project" className="project">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="titlepage">
+                                <h2>Featured Products</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="product_main">
+                            {product.map((pro) => (
+                                <div className="project_box " key={pro.id}>
+                                    <div className="dark_white_bg"><img src={pro.image}/></div>
+                                    <h3>{pro.title}<br/> <strong>{pro.price} Rs</strong></h3>
+                                    <button onClick={() => addToCart(pro)}>Add to Cart</button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-            ))}
-
+            </div>
             {/* Render cart items */}
+            {console.log(cartItems)}
             {cartItems.map((item) => (
                 <div key={item.id}>
+                    <div>Alkesh rohit</div>
                     <p>{item.title} x {item.quantity}</p>
                     <p>Price: {item.price}</p>
                 </div>

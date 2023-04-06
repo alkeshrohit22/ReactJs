@@ -1,0 +1,16 @@
+.project_box button {
+    color: white;
+    background-color: #1d37fd;
+    border-radius: 9px;
+    border: 2px solid white;
+    padding: 6px;
+}
+
+.project_box button:hover {
+    color: white;
+    background-color: #f2c119;
+}
+
+.dark_white_bg {
+    width: 210px !important;
+}

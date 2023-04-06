@@ -7,87 +7,87 @@
   },
   {
     "id": 2,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Men's & Women's Waking Shoes",
+    "image": "images/shoes2.png",
+    "price": 4119.00
   },
   {
     "id": 3,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Men's & Women's Party Shoes",
+    "image": "images/shoes3.png",
+    "price": 3999.00
   },
   {
     "id": 4,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Men's & Women's Party Shoes",
+    "image": "images/shoes4.png",
+    "price": 5999.00
   },
   {
     "id": 5,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Men's & Women's Cricket Shoes",
+    "image": "images/shoes5.png",
+    "price": 4999.00
   },
   {
     "id": 6,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Men's half Sleaves T-shirt",
+    "image": "images/tisat1.png",
+    "price": 799.00
   },
   {
     "id": 7,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Men's half Sleaves T-shirt",
+    "image": "images/tisat2.png",
+    "price": 659.00
   },
   {
     "id": 8,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Men's half Sleaves T-shirt",
+    "image": "images/tisat3.png",
+    "price": 499.00
   },
   {
     "id": 9,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Men's half Sleaves T-shirt",
+    "image": "images/tisat4.png",
+    "price": 899.00
   },
   {
     "id": 10,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Men's half Sleaves T-shirt",
+    "image": "images/tisat5.png",
+    "price": 399.00
   },
   {
     "id": 11,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Mobile phone ",
+    "image": "images/mix1.png",
+    "price": 10000.00
   },
   {
     "id": 12,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Sun Glasses",
+    "image": "./images/mix2.png",
+    "price": 999.00
   },
   {
     "id": 13,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO trimmer for men ",
+    "image": "images/mix3.png",
+    "price": 1200.00
   },
   {
     "id": 14,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO watch for men ",
+    "image": "images/mix4.png",
+    "price": 6000.00
   },
   {
     "id": 15,
-    "title": "",
-    "image": "",
-    "price": ""
+    "title": "XOLO Head Phone wirless ",
+    "image": "images/mix5.png",
+    "price": 10000.00
   }
 ]
 
