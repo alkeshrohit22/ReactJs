@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import '../css/Products.css'
 import '../css/ProductListing.css'
 
-function ProductPageList() {
+function ProductPageList(props) {
     // const [data, setData] = useState(null);
     const [product, setproduct] = useState([])
     const [cartItems, setCartItems] = useState([]);
@@ -36,12 +36,15 @@ function ProductPageList() {
                 // Update quantity of existing item
                 return prevCartItems.map(item => {
                     if (item.id === product.id) {
+                        props.onAddToCart({...item, quantity: item.quantity + 1})
                         return {...item, quantity: item.quantity + 1};
                     }
+                    props.onAddToCart({item})
                     return item;
 
                 });
             } else {
+                props.onAddToCart([...prevCartItems, {...product, quantity: 1}])
                 return [...prevCartItems, {...product, quantity: 1}];
             }
         });
@@ -72,15 +75,6 @@ function ProductPageList() {
                     </div>
                 </div>
             </div>
-            {/* Render cart items */}
-            {console.log(cartItems)}
-            {cartItems.map((item) => (
-                <div key={item.id}>
-                    <div>Alkesh rohit</div>
-                    <p>{item.title} x {item.quantity}</p>
-                    <p>Price: {item.price}</p>
-                </div>
-            ))}
         </>
     );
 }
