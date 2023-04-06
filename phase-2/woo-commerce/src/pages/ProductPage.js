@@ -1,6 +1,6 @@
 import React from 'react'
 import './css/ProductPage.css';
-import Products from "./Homepage/Products";
+import ProductPageList from "./ProductPage/ProductPageList";
 
 function ProductPage() {
     return (
@@ -16,7 +16,7 @@ function ProductPage() {
                     </div>
                 </div>
             </div>
-            {/*<Products/>*/}
+            <ProductPageList/>
         </>
     );
 }
