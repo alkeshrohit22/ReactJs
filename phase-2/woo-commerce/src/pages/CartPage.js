@@ -1,14 +1,9 @@
 import React from 'react'
-import ProductPageList from "./ProductPage/ProductPageList";
 
-function CartPage() {
-    const handleAddToCart = (product) => {
-        // Access the return value of addToCart here
-        console.log('Product added to cart:', product);
-    };
+function CartPage({addToCart, cartItems}) {
     return (
         <>
-            <ProductPageList onAddToCart={handleAddToCart}/>
+            {console.log({cartItems})}
         </>
     )
 }

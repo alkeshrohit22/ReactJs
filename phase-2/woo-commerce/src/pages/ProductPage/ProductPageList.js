@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import CartPage from "../CartPage";
 import '../css/Products.css'
 import '../css/ProductListing.css'
 
-function ProductPageList(props) {
+function ProductPageList() {
     // const [data, setData] = useState(null);
     const [product, setproduct] = useState([])
     const [cartItems, setCartItems] = useState([]);
@@ -36,15 +37,15 @@ function ProductPageList(props) {
                 // Update quantity of existing item
                 return prevCartItems.map(item => {
                     if (item.id === product.id) {
-                        props.onAddToCart({...item, quantity: item.quantity + 1})
+                        // props.onAddToCart({...item, quantity: item.quantity + 1})
                         return {...item, quantity: item.quantity + 1};
                     }
-                    props.onAddToCart({item})
+                    // props.onAddToCart({item})
                     return item;
 
                 });
             } else {
-                props.onAddToCart([...prevCartItems, {...product, quantity: 1}])
+                // props.onAddToCart([...prevCartItems, {...product, quantity: 1}])
                 return [...prevCartItems, {...product, quantity: 1}];
             }
         });
@@ -75,6 +76,7 @@ function ProductPageList(props) {
                     </div>
                 </div>
             </div>
+            <CartPage addToCart={addToCart} cartItems={cartItems}/>
         </>
     );
 }
