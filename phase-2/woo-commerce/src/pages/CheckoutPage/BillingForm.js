@@ -1,5 +1,6 @@
 import React from 'react'
 import '../css/BillingForm.css'
+import '../js/BillingForm'
 
 function BillingForm() {
     return (

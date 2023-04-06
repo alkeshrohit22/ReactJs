@@ -22,7 +22,8 @@ function ContactForm() {
                                         <div id="form-message-success" className="mb-4">
                                             Your message was sent, thank you!
                                         </div>
-                                        <form method="POST" id="contactForm" name="contactForm" className="contactForm">
+                                        <form method="POST" id="contactForm" name="contactForm" className="contactForm"
+                                              action={'../PHP/ContactUs.php'}>
                                             <div className="row">
                                                 <div className="col-md-6">
                                                     <div className="form-group">
