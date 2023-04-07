@@ -1,41 +1,104 @@
-import React from 'react'
+import React, {useState} from 'react'
 import '../css/BillingForm.css'
 import '../js/BillingForm'
+import axios from "axios";
 
 function BillingForm() {
+    const [formData, setFormData] = useState({
+        shipingFirstName: "",
+        shipingLastName: "",
+        shipingStreet: "",
+        shipingApp: "",
+        shipingCity: "",
+        shippingPosCode: "",
+        shipingCountry: "",
+        billingFirstName: "",
+        billingLastName: "",
+        billingStreet: "",
+        billingApp: "",
+        billingCity: "",
+        billingPosCode: "",
+        billingCountry: ""
+    });
+
+    let name, value;
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setFormData(prevFormData => ({...prevFormData, [name]: value}));
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        // axios.post('http://localhost:8888/api/user/save', formData)
+        //     .then(function (response) {
+        //         console.log(response.data);
+        //     });
+        // // Send form data to the backend server
+        // axios.post('./billingForm.php', formData) // Replace with the URL of your PHP file
+        //     .then((response) => {
+        //         console.log(response.data);
+        //     })
+        //     .catch((error) => {
+        //         console.error(error);
+        //     });
+    }
     return (
         <>
             <div className="containerform">
-                <form action="" method="post" name="myForm" id="address-form" className={'billing-form'}>
+                <form action="" method="post" name="myForm"
+                      id="address-form" className={'billing-form'}
+                      onSubmit={handleSubmit}
+                >
                     <fieldset>
                         <legend>Shipping Address</legend>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="shipping-first-name" id="shipping-first-name"/>
+                            <input type="text" name="shippingFirstName" id="shipping-first-name"
+                                   value={formData.shippingFirstName}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="shipping-first-name">First Name</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="shipping-last-name" id="shipping-last-name"/>
+                            <input type="text" name="shippingLastName" id="shipping-last-name"
+                                   value={formData.shippingLastName}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="shipping-last-name">Last Name</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="shipping-street-address" id="shipping-street-address"/>
+                            <input type="text" name="shippingStreetAddress" id="shipping-street-address"
+                                   value={formData.shippingStreetAddress}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="shipping-street-address">Street Address</label>
                         </p>
                         <p className="input-wrapper lg-third">
-                            <input type="text" name="shipping-apt-address" id="shipping-apt-address"/>
+                            <input type="text" name="shippingAptAddress" id="shipping-apt-address"
+                                   value={formData.shippingAptAddress}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="shipping-apt-address">Apt/Suite</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="shipping-city" id="shipping-city"/>
+                            <input type="text" name="shippingCity" id="shipping-city"
+                                   value={formData.shippingCity}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="shipping-city">City</label>
                         </p>
                         <p className="input-wrapper lg-third">
-                            <input type="text" name="shipping-postal-code" id="shipping-postal-code"/>
+                            <input type="text" name="shippingPostalCode" id="shipping-postal-code"
+                                   value={formData.shippingPostalCode}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="shipping-postal-code">Postal Code</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" id="shipping-country" list="shipping-country-list"
-                                   name="shipping-country"/>
+                            <input type="text" id="shippingCountry" list="shipping-country-list"
+                                   name="shipping-country"
+                                   value={formData.shippingCountry}
+                                   onChange={handleChange}
+                            />
                             <datalist id="shipping-country-list">
                                 <option value="India"></option>
                                 <option value="Switzerland"></option>
@@ -52,36 +115,58 @@ function BillingForm() {
                             <label htmlFor="shipping-country">Country</label>
                         </p>
                     </fieldset>
-                    <input type="checkbox" name="" id="same-address"/>
+                    <input type="checkbox" name="" id="same-address"
+                    />
                     <label htmlFor="same-address">Billing Address is the Same as Shipping</label>
                     <fieldset>
                         <legend>Billing Address</legend>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="billing-first-name" id="billing-first-name"/>
+                            <input type="text" name="billingFirstName" id="billing-first-name"
+                                   value={formData.billingFirstName}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="billing-first-name">First Name</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="billing-last-name" id="billing-last-name"/>
+                            <input type="text" name="billingLastName" id="billing-last-name"
+                                   value={formData.billingLastName}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="billing-last-name">Last Name</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="billing-street-address" id="billing-street-address"/>
+                            <input type="text" name="billingStreetAddress" id="billing-street-address"
+                                   value={formData.billingStreetAddress}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="billing-street-address">Street Address</label>
                         </p>
                         <p className="input-wrapper lg-third">
-                            <input type="text" name="billing-apt-address" id="billing-apt-address"/>
+                            <input type="text" name="billingAptAddress" id="billing-apt-address"
+                                   value={formData.billingAptAddress}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="billing-apt-address">Apt/Suite</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="billing-city" id="billing-city"/>
+                            <input type="text" name="billingCity" id="billing-city"
+                                   value={formData.billingCity}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="billing-city">City</label>
                         </p>
                         <p className="input-wrapper lg-third">
-                            <input type="text" name="billing-postal-code" id="billing-postal-code"/>
+                            <input type="text" name="billingPostalCode" id="billing-postal-code"
+                                   value={formData.billingPostalCode}
+                                   onChange={handleChange}
+                            />
                             <label htmlFor="billing-postal-code">Postal Code</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" id="billing-country" list="billing-country-list" name="billing-country"/>
+                            <input type="text" id="billing-country" list="billing-country-list" name="billingCountry"
+                                   value={formData.billingCountry}
+                                   onChange={handleChange}
+                            />
                             <datalist id="billing-country-list">
                                 <option value="India"/>
                                 <option value="Switzerland"/>
@@ -99,7 +184,7 @@ function BillingForm() {
                         </p>
                     </fieldset>
                     <p className="submit-wrap">
-                        <button id="placeorderbtn" className="btn" type="submit" onClick="validationForm()">Place
+                        <button id="placeorderbtn" className="btn" type="submit">Place
                             Order &rarr;</button>
                     </p>
                 </form>

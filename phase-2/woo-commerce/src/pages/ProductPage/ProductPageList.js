@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import CartPage from "../CartPage";
+import React, {useState, useEffect, useCallback} from 'react';
 import '../css/Products.css'
 import '../css/ProductListing.css'
 
@@ -30,26 +29,13 @@ function ProductPageList() {
         fetchData();
     }, []);
     //add to cart function
-    const addToCart = (product) => {
-        setCartItems(prevCartItems => {
-            const existingItem = prevCartItems.find(item => item.id === product.id);
-            if (existingItem) {
-                // Update quantity of existing item
-                return prevCartItems.map(item => {
-                    if (item.id === product.id) {
-                        // props.onAddToCart({...item, quantity: item.quantity + 1})
-                        return {...item, quantity: item.quantity + 1};
-                    }
-                    // props.onAddToCart({item})
-                    return item;
+    const addToCart = useCallback((product) => {
+        var cartItemTemp = cartItems;
+        cartItemTemp.push(product);
+        setCartItems(cartItemTemp);
 
-                });
-            } else {
-                // props.onAddToCart([...prevCartItems, {...product, quantity: 1}])
-                return [...prevCartItems, {...product, quantity: 1}];
-            }
-        });
-    };
+        localStorage.setItem('cartItems', JSON.stringify(cartItemTemp));
+    }, [cartItems]);
 
 
     return (
@@ -76,7 +62,6 @@ function ProductPageList() {
                     </div>
                 </div>
             </div>
-            <CartPage addToCart={addToCart} cartItems={cartItems}/>
         </>
     );
 }
