@@ -3,6 +3,7 @@ import '../css/ContacatForm.css'
 import {FcHome, FcPhoneAndroid} from "react-icons/fc";
 import {MdMarkEmailRead} from 'react-icons/md'
 import {CgWebsite} from 'react-icons/cg'
+import $ from 'jquery'
 
 function ContactForm() {
     const [formData, setFormData] = useState({
@@ -11,30 +12,19 @@ function ContactForm() {
         subject: '',
         message: '',
     });
+    const [result, setResult] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Send form data to server to trigger email using PHP script
-        fetch('./ContactUs.php', {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json',
+        const form = $(e.target);
+        $.ajax({
+            type: "POST",
+            url: form.attr("action"),
+            data: form.serialize(),
+            success(data) {
+                setResult(data);
             },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    alert('Your message was sent, thank you!');
-                } else {
-                    alert('Failed to send email. Please try again later.');
-                }
-            })
-            .catch((error) => {
-                console.error('Error sending email:', error);
-                alert('Failed to send email. Please try again later.');
-            });
+        });
     };
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -54,7 +44,8 @@ function ContactForm() {
                                         Your message was sent, thank you!
                                     </div>
                                     <form
-                                        method="POST"
+                                        method="post"
+                                        action={"http://localhost/ReactJs/phase-2/woo-commerce-backend/ContactUs.php"}
                                         id="contactForm"
                                         name="contactForm"
                                         className="contactForm"
