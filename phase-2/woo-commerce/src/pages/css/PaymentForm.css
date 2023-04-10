@@ -1,0 +1,54 @@
+/* PaymentForm.css */
+
+/*Container for the PaymentForm */
+.container-payment {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+/* Heading for the PaymentForm */
+.container-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+    margin-top: 20px;
+}
+
+/* Input fields */
+input[type="number"],
+input[type="tel"],
+input[type="month"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+/* Error message */
+.error {
+    color: #ff0000;
+    margin-bottom: 10px;
+}
+
+/* Submit button */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
