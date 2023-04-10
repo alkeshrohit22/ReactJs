@@ -117,8 +117,7 @@ function ContactForm() {
                                             <span><FcHome/></span>
                                         </div>
                                         <div className="text pl-3">
-                                            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY
-                                                10016</p>
+                                            <p><span>Address:</span> XOLO Store, 1234 Example Street, New York, NY 12345</p>
                                         </div>
                                     </div>
                                     <div className="dbox w-100 d-flex align-items-center">
@@ -126,7 +125,7 @@ function ContactForm() {
                                             <span><FcPhoneAndroid/></span>
                                         </div>
                                         <div className="text pl-3">
-                                            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                                            <p><span>Phone:</span> <a href="tel://1234567920">(555) 123-4567</a></p>
                                         </div>
                                     </div>
                                     <div className="dbox w-100 d-flex align-items-center">
@@ -135,7 +134,7 @@ function ContactForm() {
                                         </div>
                                         <div className="text pl-3">
                                             <p><span>Email:</span> <a
-                                                href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                                                href="mailto:info@yoursite.com"> info@xolobrand.com</a></p>
                                         </div>
                                     </div>
                                     <div className="dbox w-100 d-flex align-items-center">
@@ -143,7 +142,7 @@ function ContactForm() {
                                             <span><CgWebsite/></span>
                                         </div>
                                         <div className="text pl-3">
-                                            <p><span>Website</span> <a href="#">yoursite.com</a></p>
+                                            <p><span>Website:</span> <a href="#">www.xolo.com</a></p>
                                         </div>
                                     </div>
                                 </div>

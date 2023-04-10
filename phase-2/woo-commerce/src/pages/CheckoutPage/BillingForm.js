@@ -40,7 +40,7 @@ function BillingForm() {
                 url: form.attr("action"),
                 data: formData,
                 success(data) {
-                    // window.location.href = '/paymentpage';
+                    window.location.href = '/paymentpage';
                 },
             });
         }
@@ -71,15 +71,6 @@ function BillingForm() {
             return false;
         }
 
-        // if(formData.sameAddress === 'true') {
-        //     formData.billingFirstName = shippingFirstName;
-        //     formData.billingLastName = shippingLastName;
-        //     formData.billingAddress = shippingAddress;
-        //     formData.billingApartment = shippingApartment;
-        //     formData.billingCity = shippingCity;
-        //     formData.billingZip = shippingZip;
-        //     formData.billingCountry = shippingCountry;
-        // }
         // Check if billing address fields are filled out, if sameAddress is false
         if (!formData.sameAddress && (!billingFirstName || !billingLastName || !billingAddress || !billingCity || !billingCountry || !billingZip || !billingApartment)) {
             alert("Please provide all billing address information.");

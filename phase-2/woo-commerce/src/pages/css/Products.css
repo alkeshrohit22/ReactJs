@@ -44,6 +44,11 @@
     align-items: center;
     justify-content: center;
 }
+.dark_white_bg:hover {
+    transform: scale(1.1);
+    background-color: gold;
+    border-radius: 20px;
+}
 
 .project .project_box h3 {
     color: #1c1c1b;

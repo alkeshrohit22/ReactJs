@@ -10,13 +10,9 @@ function ProductPageList() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Make an HTTP GET request to fetch the JSON file
                 const response = await fetch('../../../product.json');
-                // Check if the response is successful
                 if (response.ok) {
-                    // Parse the response body as JSON
                     const jsonData = await response.json();
-                    // Update the state with the fetched data
                     setproduct(jsonData);
                 } else {
                     console.error('Error fetching product data:', response.statusText);
