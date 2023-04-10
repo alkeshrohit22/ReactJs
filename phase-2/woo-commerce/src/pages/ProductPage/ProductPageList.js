@@ -27,23 +27,30 @@ function ProductPageList() {
 
     const addToCart = useCallback((product) => {
         try {
-            // Get the existing cart items from local storage
-            const cartItemsFromStorage = localStorage.getItem('cartItems');
-            let cartItems = [];
+            if(window.confirm("Sure! Want to add?")){
 
-            // If there are existing cart items, parse them from JSON
-            if (cartItemsFromStorage) {
-                cartItems = JSON.parse(cartItemsFromStorage);
+                // Get the existing cart items from local storage
+                const cartItemsFromStorage = localStorage.getItem('cartItems');
+                let cartItems = [];
+
+                // If there are existing cart items, parse them from JSON
+                if (cartItemsFromStorage) {
+                    cartItems = JSON.parse(cartItemsFromStorage);
+                }
+
+                // Add the new product to the cart items array
+                cartItems.push(product);
+
+                // Update the cart items in local storage
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+                // Update the state with the new cart items
+                setCartItems(cartItems);
+
+            } else {
+                console.log("Not Want to add!!!");
             }
 
-            // Add the new product to the cart items array
-            cartItems.push(product);
-
-            // Update the cart items in local storage
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-            // Update the state with the new cart items
-            setCartItems(cartItems);
         } catch (error) {
             console.error('Error adding to cart:', error);
         }

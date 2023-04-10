@@ -20,13 +20,13 @@ $headers = "From: ".$email ."\r\n";
 $headers .= "Reply-To: ".$email."\r\n";
 $headers .= "Content-type: text/plain\r\n";
 
-
 // Send email
 if (mail($to, $subject, $emailBody, $headers)) {
     $response = array('success' => true);
+    echo json_encode($response);
 } else {
-    $response = array('success' => false);
+    $response = array('success' => false, 'error' => error_get_last()['message']);
+    echo json_encode($response);
 }
-echo json_encode($response);
 
 ?>
