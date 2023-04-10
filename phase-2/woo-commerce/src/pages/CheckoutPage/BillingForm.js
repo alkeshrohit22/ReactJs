@@ -3,92 +3,91 @@ import '../css/BillingForm.css';
 import $ from 'jquery';
 
 function BillingForm() {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        shippingFirstName: '',
+        shippingLastName: '',
+        shippingAddress: '',
+        shippingApartment: '',
+        shippingCity: '',
+        shippingCountry: '',
+        shippingZip: '',
+        sameAddress: false,
+        billingFirstName: '',
+        billingLastName: '',
+        billingAddress: '',
+        billingApartment: '',
+        billingCity: '',
+        billingCountry: '',
+        billingZip: '',
+        email: '',
+        phoneNumber: ''
+    });
 
     const handleChange = (event) => {
-        let { name, value } = event.target;
-        if (name === "sameAddress") {
-            value = event.target.checked;
-        }
-        setFormData({ ...formData, [name]: value });
+        const { name, value, checked, type } = event.target;
+        const newValue = type === 'checkbox' ? checked : value;
+
+        setFormData({ ...formData, [name]: newValue });
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(validationBilling()) {
+        if (validationBilling()) {
             const form = $(e.target);
 
             $.ajax({
                 type: "POST",
                 url: form.attr("action"),
-                data: form.serializeArray(),
+                data: formData,
                 success(data) {
-                    window.location.href = '/paymentpage';
+                    // window.location.href = '/paymentpage';
                 },
             });
         }
     }
+
     const validationBilling = () => {
         const {
             shippingFirstName,
             shippingLastName,
             shippingAddress,
+            shippingApartment,
             shippingCity,
-            shippingState,
+            shippingCountry,
             shippingZip,
-            sameAddress,
             billingFirstName,
             billingLastName,
             billingAddress,
+            billingApartment,
             billingCity,
-            billingState,
+            billingCountry,
             billingZip,
             email,
             phoneNumber
         } = formData;
 
-        // Check if shipping address fields are filled out
-        if (!shippingFirstName || !shippingLastName || !shippingAddress || !shippingCity || !shippingState || !shippingZip) {
+        if (!shippingFirstName || !shippingLastName || !shippingAddress || !shippingCity || !shippingCountry || !shippingZip || !shippingApartment) {
             alert("Please provide all shipping address information.");
             return false;
         }
 
+        // if(formData.sameAddress === 'true') {
+        //     formData.billingFirstName = shippingFirstName;
+        //     formData.billingLastName = shippingLastName;
+        //     formData.billingAddress = shippingAddress;
+        //     formData.billingApartment = shippingApartment;
+        //     formData.billingCity = shippingCity;
+        //     formData.billingZip = shippingZip;
+        //     formData.billingCountry = shippingCountry;
+        // }
         // Check if billing address fields are filled out, if sameAddress is false
-        if (!sameAddress && (!billingFirstName || !billingLastName || !billingAddress || !billingCity || !billingState || !billingZip)) {
+        if (!formData.sameAddress && (!billingFirstName || !billingLastName || !billingAddress || !billingCity || !billingCountry || !billingZip || !billingApartment)) {
             alert("Please provide all billing address information.");
-            return false;
-        }
-
-        // Check if billing address fields are filled out and valid, if sameAddress is true
-        if (sameAddress && (!billingFirstName || !billingLastName || !billingAddress || !billingCity || !billingState || !billingZip)) {
-            alert("Please provide all billing address information.");
-            return false;
-        }
-
-        // Check if billing zip code is valid
-        const billingZipPattern = /^\d{6}$/; // Regular expression for 5-digit zip code
-        if (!billingZipPattern.test(billingZip)) {
-            alert("Please enter a valid 5-digit billing zip code.");
-            return false;
-        }
-
-        // Check if email address is valid
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression for email address
-        if (!emailPattern.test(email)) {
-            alert("Please enter a valid email address.");
-            return false;
-        }
-
-        // Check if phone number is valid
-        const phonePattern = /^\d{10}$/; // Regular expression for 10-digit phone number
-        if (!phonePattern.test(phoneNumber)) {
-            alert("Please enter a valid 10-digit phone number.");
             return false;
         }
 
         return true;
     };
-
 
     return (
         <>
@@ -117,15 +116,15 @@ function BillingForm() {
                             <label htmlFor="shipping-last-name">Last Name</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="shippingStreetAddress" id="shipping-street-address"
-                                   value={formData.shippingStreetAddress || ''}
+                            <input type="text" name="shippingAddress" id="shipping-street-address"
+                                   value={formData.shippingAddress || ''}
                                    onChange={handleChange}
                             />
                             <label htmlFor="shipping-street-address">Street Address</label>
                         </p>
                         <p className="input-wrapper lg-third">
-                            <input type="text" name="shippingAptAddress" id="shipping-apt-address"
-                                   value={formData.shippingAptAddress || ''}
+                            <input type="text" name="shippingApartment" id="shipping-apt-address"
+                                   value={formData.shippingApartment || ''}
                                    onChange={handleChange}
                             />
                             <label htmlFor="shipping-apt-address">Apt/Suite</label>
@@ -138,15 +137,15 @@ function BillingForm() {
                             <label htmlFor="shipping-city">City</label>
                         </p>
                         <p className="input-wrapper lg-third">
-                            <input type="text" name="shippingPostalCode" id="shipping-postal-code"
-                                   value={formData.shippingPostalCode || ''}
+                            <input type="text" name="shippingZip" id="shipping-postal-code"
+                                   value={formData.shippingZip || ''}
                                    onChange={handleChange}
                             />
                             <label htmlFor="shipping-postal-code">Postal Code</label>
                         </p>
                         <p className="input-wrapper lg-half">
                             <input type="text" id="shippingCountry" list="shipping-country-list"
-                                   name="shipping-country"
+                                   name="shippingCountry"
                                    value={formData.shippingCountry || ''}
                                    onChange={handleChange}
                             />
@@ -188,15 +187,15 @@ function BillingForm() {
                             <label htmlFor="billing-last-name">Last Name</label>
                         </p>
                         <p className="input-wrapper lg-half">
-                            <input type="text" name="billingStreetAddress" id="billing-street-address"
-                                   value={formData.billingStreetAddress || ''}
+                            <input type="text" name="billingAddress" id="billing-street-address"
+                                   value={formData.billingAddress || ''}
                                    onChange={handleChange}
                             />
                             <label htmlFor="billing-street-address">Street Address</label>
                         </p>
                         <p className="input-wrapper lg-third">
-                            <input type="text" name="billingAptAddress" id="billing-apt-address"
-                                   value={formData.billingAptAddress || ''}
+                            <input type="text" name="billingApartment" id="billing-apt-address"
+                                   value={formData.billingApartment || ''}
                                    onChange={handleChange}
                             />
                             <label htmlFor="billing-apt-address">Apt/Suite</label>
@@ -209,8 +208,8 @@ function BillingForm() {
                             <label htmlFor="billing-city">City</label>
                         </p>
                         <p className="input-wrapper lg-third">
-                            <input type="text" name="billingPostalCode" id="billing-postal-code"
-                                   value={formData.billingPostalCode || ''}
+                            <input type="text" name="billingZip" id="billing-postal-code"
+                                   value={formData.billingZip || ''}
                                    onChange={handleChange}
                             />
                             <label htmlFor="billing-postal-code">Postal Code</label>

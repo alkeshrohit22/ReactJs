@@ -9,7 +9,9 @@ $shipingApp = "";
 $shipingCity = "";
 $shippingPosCode = "";
 $shipingCountry = "";
+
 $sameAddress = '';
+
 $billingFirstName = "";
 $billingLastName = "";
 $billingStreet = "";
@@ -21,23 +23,32 @@ $billingCountry = "";
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $shippingFirstName = $_POST['shippingFirstName'];
     $shippingLastName = $_POST['shippingLastName'];
-    $shippingStreet = $_POST['shippingStreetAddress'];
-    $shippingApp = $_POST['shippingAptAddress'];
+    $shippingStreet = $_POST['shippingAddress'];
+    $shippingApp = $_POST['shippingApartment'];
     $shippingCity = $_POST['shippingCity'];
-    $shippingPosCode = $_POST['shippingPostalCode'];
-    $shippingCountry = $_POST['shipping-country'];
+    $shippingPosCode = $_POST['shippingZip'];
+    $shippingCountry = $_POST['shippingCountry'];
+
     $sameAddress = $_POST['sameAddress'];
 
-    echo $sameAddress;exit();
-    $billingFirstName = $_POST['billingFirstName'];
-    $billingLastName = $_POST['billingLastName'];
-    $billingStreet = $_POST['billingStreetAddress'];
-    $billingApp = $_POST['billingAptAddress'];
-    $billingCity = $_POST['billingCity'];
-    $billingPosCode = $_POST['billingPostalCode'];
-    $billingCountry = $_POST['billingCountry'];
-
-//    remove unwanted space
+    if($sameAddress === 'true') {
+        $billingFirstName = $shippingFirstName;
+        $billingLastName = $shippingLastName;
+        $billingStreet = $shippingStreet;
+        $billingApp = $shippingApp;
+        $billingCity =  $shippingCity;
+        $billingPosCode = $shippingPosCode;
+        $billingCountry = $shippingCountry;
+    } else {
+        $billingFirstName = $_POST['billingFirstName'];
+        $billingLastName = $_POST['billingLastName'];
+        $billingStreet = $_POST['billingAddress'];
+        $billingApp = $_POST['billingApartment'];
+        $billingCity = $_POST['billingCity'];
+        $billingPosCode = $_POST['billingZip'];
+        $billingCountry = $_POST['billingCountry'];
+    }
+    //    remove unwanted space
     $shippingFirstName = test_input($shippingFirstName);
     $shippingLastName = test_input($shippingLastName);
     $shippingStreet = test_input($shippingStreet);

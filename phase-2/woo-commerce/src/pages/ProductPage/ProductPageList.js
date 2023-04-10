@@ -28,14 +28,40 @@ function ProductPageList() {
 
         fetchData();
     }, []);
-    //add to cart function
-    const addToCart = useCallback((product) => {
-        var cartItemTemp = cartItems;
-        cartItemTemp.push(product);
-        setCartItems(cartItemTemp);
 
-        localStorage.setItem('cartItems', JSON.stringify(cartItemTemp));
-    }, [cartItems]);
+    const addToCart = useCallback((product) => {
+        try {
+            // Get the existing cart items from local storage
+            const cartItemsFromStorage = localStorage.getItem('cartItems');
+            let cartItems = [];
+
+            // If there are existing cart items, parse them from JSON
+            if (cartItemsFromStorage) {
+                cartItems = JSON.parse(cartItemsFromStorage);
+            }
+
+            // Add the new product to the cart items array
+            cartItems.push(product);
+
+            // Update the cart items in local storage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+            // Update the state with the new cart items
+            setCartItems(cartItems);
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+        }
+    }, []);
+
+    useEffect(() => {
+        // Fetch cart items from local storage on component mount
+        const cartItemsFromStorage = localStorage.getItem('cartItems');
+        if (cartItemsFromStorage) {
+            const parsedCartItems = JSON.parse(cartItemsFromStorage);
+            setCartItems(parsedCartItems);
+        }
+    }, []);
+
 
 
     return (
