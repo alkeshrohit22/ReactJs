@@ -76,7 +76,7 @@ input[type="checkbox"] + label {
 }
 
 input[type="text"] {
-    height: 3.4rem;
+    /*height: 3.4rem;*/
     width: 100%;
     padding-top: 1.5em;
     padding-left: 20px;

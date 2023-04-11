@@ -24,6 +24,9 @@
     padding-left: 0;
     padding-right: 0;
 }
+.pa_left:hover {
+    transform: scale(1.2);
+}
 
 .six_box .six_probpx span {
     color: #fff;

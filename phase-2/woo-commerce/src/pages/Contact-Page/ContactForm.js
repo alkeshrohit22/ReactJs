@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../css/ContacatForm.css'
 import {FcHome, FcPhoneAndroid} from "react-icons/fc";
 import {MdMarkEmailRead} from 'react-icons/md'
@@ -12,16 +12,11 @@ function ContactForm() {
         subject: '',
         message: '',
     });
-    const [errors, setErrors] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-    });
+    const [error, setError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        const isValid = validationContactUs();
+        const isValid = await validationContactUs();
         if(isValid) {
             const form = $(e.target);
             $.ajax({
@@ -35,6 +30,14 @@ function ContactForm() {
         }
     };
 
+    useEffect(() => {
+        if(error) {
+            //show the error in alert
+            console.log(error);
+            alert(error);
+        }
+    }, [error]);
+
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormData({...formData, [name]: value});
@@ -42,38 +45,44 @@ function ContactForm() {
 
     const validationContactUs = () => {
         const { name, email, subject, message } = formData;
-        let isValid = true;
-        const newErrors = {};
 
-        // Validate name
-        if (name.trim() === '') {
-            isValid = false;
-            newErrors.name = 'Please enter your name';
+        let nameReg = /^[A-Za-z\s]+$/;
+
+        if(!(nameReg.test(name))) {
+            setError('Name is not valid!!!');
+            return false;
+        }
+        if(name.length < 3) {
+            setError('To Short Name!!!');
+            return false;
         }
 
-        // Validate email
-        if (email.trim() === '') {
-            isValid = false;
-            newErrors.email = 'Please enter your email';
-        } else if (!validateEmail(email)) {
-            isValid = false;
-            newErrors.email = 'Please enter a valid email address';
+        if (!validateEmail(email)) {
+            setError('Not a proper email!!!');
+            return false;
         }
 
         // Validate subject
-        if (subject.trim() === '') {
-            isValid = false;
-            newErrors.subject = 'Please enter a subject';
+        if (!(nameReg.test(subject))) {
+            setError('Subject is not valid!!!');
+            return false;
+        }
+        if(subject.length < 5) {
+            setError('Subject title is to short!!!');
+            return false;
         }
 
         // Validate message
         if (message.trim() === '') {
-            isValid = false;
-            newErrors.message = 'Please enter a message';
+            setError('Invalid message !!!');
+            return false;
+        }
+        if(message.length < 5) {
+            setError('Message Content is to short!!!');
+            return false;
         }
 
-        setErrors(newErrors);
-        return isValid;
+        return true;
     };
 
     const validateEmail = (email) => {
@@ -154,7 +163,6 @@ function ContactForm() {
                                                                       onChange={handleChange}
                                                                       required
                                                             ></textarea>
-                                                            <div className="error">{errors.message}</div>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-12">
@@ -202,7 +210,7 @@ function ContactForm() {
                                                     <span><CgWebsite/></span>
                                                 </div>
                                                 <div className="text pl-3">
-                                                    <p><span>Website:</span> <a href="#">www.xolo.com</a></p>
+                                                    <p><span>Website:</span><a href="#">www.xolo.com</a></p>
                                                 </div>
                                             </div>
                                         </div>

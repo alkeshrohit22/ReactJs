@@ -42,6 +42,7 @@ function PaymentForm() {
         let nameReg = /^[A-Za-z\s]+$/;
         let cvvReg = /^\d{3}$/
 
+        //number valdiation
         if(number.length > 16) {
             setError('You Enter more card number! This is not valid!!!');
             return false;
@@ -50,14 +51,23 @@ function PaymentForm() {
             setError('You Enter less card number! This is not valid!!!');
             return false;
         }
+
+        //name validation
         if(!(nameReg.test(name))) {
             setError('please enter valid name!!!');
             return false;
         }
+        if(name.length < 3) {
+            setError('Name is To short!!!');
+            return false;
+        }
+
+        //cvv number validation
         if(!(cvvReg).test(cvv)) {
             setError('please enter valid cvv number');
             return false;
         }
+
         return true;
     }
     

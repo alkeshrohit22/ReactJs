@@ -28,7 +28,6 @@ function ProductPageList() {
     const addToCart = useCallback((product) => {
         try {
             if(window.confirm("Sure! Want to add?")){
-
                 // Get the existing cart items from local storage
                 const cartItemsFromStorage = localStorage.getItem('cartItems');
                 let cartItems = [];
@@ -38,8 +37,20 @@ function ProductPageList() {
                     cartItems = JSON.parse(cartItemsFromStorage);
                 }
 
-                // Add the new product to the cart items array
-                cartItems.push(product);
+                // Check if the selected product already exists in the cart
+                const existingProductIndex = cartItems.findIndex(item => item.id === product.id);
+
+                if (existingProductIndex !== -1) {
+                    // If the product already exists, increment its quantity
+                    cartItems[existingProductIndex].quantity += 1;
+                } else {
+                    // If the product does not exist, add it to the cart items array with a quantity of 1
+                    const newProduct = {
+                        ...product,
+                        quantity: 1
+                    };
+                    cartItems.push(newProduct);
+                }
 
                 // Update the cart items in local storage
                 localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -50,11 +61,11 @@ function ProductPageList() {
             } else {
                 console.log("Not Want to add!!!");
             }
-
         } catch (error) {
             console.error('Error adding to cart:', error);
         }
     }, []);
+
 
     useEffect(() => {
         // Fetch cart items from local storage on component mount

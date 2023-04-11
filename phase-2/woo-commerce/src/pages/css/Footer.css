@@ -1,6 +1,6 @@
 .footer {
     background: #183661;
-    padding-top: 45px;
+    padding-top: 10px;
     text-align: center;
 }
 
@@ -47,4 +47,36 @@
 
 .copyright a:hover {
     color: #f9bf16;
+}
+
+.inror_box > span{
+    /*margin-left: 15px;*/
+    margin-bottom: 10px;
+   color: white;
+    float: left;
+    font-size: large;
+}
+
+.inror_box > ul {
+    margin-right: 120px;
+    clear: both;
+    list-style: none;
+    padding-left: 0px;
+}
+.inror_box li {
+    padding-bottom: 10px;
+    /*float: left;*/
+}
+
+.inror_box a {
+    text-decoration: none;
+}
+
+.inror_box p {
+    float: left;
+}
+
+.inror_box > blockquote {
+    color: white;
+    margin-right: 105px;
 }

@@ -1,42 +1,84 @@
+/* AboutUs.css */
 .banner-class {
-    display: block;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
 }
 
-.banner-class img {
+.about-us-banner {
     width: 100%;
-    margin: 0px 0px 20px 0px;
+    height: 100%;
+    object-fit: cover;
 }
 
 .about-us-container {
-    max-width: 800px;
-    margin: 0 auto;
     padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .about-us-title {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
 .about-us-description {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.6;
     margin-bottom: 20px;
 }
 
-.about-us-address {
+.about-us-team {
     margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.about-us-team-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.about-us-team-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.about-us-team-member {
+    width: 200px;
+}
+
+.about-us-team-member-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.about-us-team-member-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.about-us-team-member-role {
+    font-size: 14px;
+    color: #888;
+}
+
+.about-us-address {
+    margin-bottom: 40px;
 }
 
 .about-us-address-title {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .about-us-address-description {
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 5px;
 }
-

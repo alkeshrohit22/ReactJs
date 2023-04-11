@@ -10,7 +10,7 @@ function Banner() {
                         <div className="text-bg">
                             <h1><span className="blodark"> XOLO </span> <br/>Trands 2023</h1>
                             <p>A huge fashion collection for ever </p>
-                            <a className="read_more" href="#">Shop now</a>
+                            <a className="read_more" href="/productpage">Shop now</a>
                         </div>
                     </div>
                     <div className="col-md-4">

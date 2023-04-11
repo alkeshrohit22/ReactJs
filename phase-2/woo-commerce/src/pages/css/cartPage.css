@@ -1,73 +1,61 @@
 /* cartPage.css */
 
 .table-div {
-    width: 100%;
-    margin-bottom: 30px;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
 }
 
-/* Heading style */
-.table-div .table-div-h1 {
-    margin-top: 20px;
-    font-size: 35px;
-    font-weight: bold;
-    margin-bottom: 20px;
+.table-div-h1 {
     text-align: center;
 }
 
-/* Table style */
 .table-div-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 16px;
 }
 
-/* Table header style */
-.table-div-table thead th {
+.table-div-table th,
+.table-div-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
     text-align: left;
-    padding: 10px;
-    background-color: lightslategray;
-    color: white;
 }
 
-/* Table body style */
-.table-div-table tbody td {
-    padding: 10px;
-    border-bottom: 1px solid #f2f2f2;
+.table-div-table th {
+    background-color: #f8f8f8;
 }
 
-/* Table footer style */
-tfoot td {
-    padding: 10px;
-    font-weight: bold;
-    background-color: #b1dfbb;
+.table-div-table tbody tr:hover {
+    background-color: #f0f0f0;
 }
 
-/* Delete button style */
-.table-div-table button {
-    padding: 8px 16px;
-    background-color: #f44336;
+.table-div-table tfoot tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.checkout-button {
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: green;
     color: #fff;
     border: none;
     cursor: pointer;
     border-radius: 20px;
+    transition: background-color 0.3s ease;
 }
 
-/* Delete button hover effect */
-.table-div-table button:hover {
-    background-color: #d32f2f;
+.checkout-button a {
+    text-decoration: none;
 }
 
-.table-div-table .checkout-button {
-    color: white;
-    background-color: green;
-}
-
-.table-div-table .checkout-button:hover {
-    color: white;
+.checkout-button:hover {
     background-color: darkgreen;
 }
 
-.table-div-table .checkout-button a {
-    text-decoration: none;
-    color: black;
+.checkout-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }

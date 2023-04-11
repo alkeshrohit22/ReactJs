@@ -1,32 +1,74 @@
 <?php
+include_once 'connection.php';
 header('Access-Control-Allow-Origin: http://localhost:3000');
-// Get form data from POST request
-$name = $_POST['name'];
-$email = $_POST['email'];
-$subject = $_POST['subject'];
-$message = $_POST['message'];
 
-// Set up email parameters
-$to = 'alkeshrohit2201@gmail.com';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-// Message body of the email
-$emailBody = "Name: $name\n";
-$emailBody .= "Email: $email\n";
-$emailBody .= "Subject: $subject\n";
-$emailBody .= "Message: $message\n";
+require 'vendor/autoload.php';
 
-// Additional headers
-$headers = "From: ".$email ."\r\n";
-$headers .= "Reply-To: ".$email."\r\n";
-$headers .= "Content-type: text/plain\r\n";
-
-// Send email
-if (mail($to, $subject, $emailBody, $headers)) {
-    $response = array('success' => true);
-    echo json_encode($response);
-} else {
-    $response = array('success' => false, 'error' => error_get_last()['message']);
-    echo json_encode($response);
+// Function to sanitize form data
+function sanitizeData($data) {
+    // Remove extra spaces and unwanted symbols
+    $data = trim($data);
+    $data = preg_replace('/\s+/', ' ', $data);
+    $data = preg_replace('/[^a-zA-Z0-9\s]/', '', $data);
+    return $data;
 }
 
+// Get form data from POST request and sanitize
+$name = sanitizeData($_POST['name']);
+$email = $_POST['email'];
+$subject = sanitizeData($_POST['subject']);
+$message = sanitizeData($_POST['message']);
+
+// Create a new PHPMailer object
+$mail = new PHPMailer(true);
+try {
+    // Server settings
+    // $mail->SMTPDebug = 2; // Uncomment to view debug log
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'alkesh.rohit@sigmainfo.net';
+    $mail->Password = 'Alkesh@sigma22';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
+
+    $mail->setfrom($email, $name);
+    $mail->addAddress('alkeshrohit007@gmail.com', 'Admin');
+
+    // Content
+    $mail->Subject = $subject;
+    $mail->Body = $message;
+
+    $mail->send();
+    echo 'Message has been sent';
+
+    $DBsql = 'CREATE DATABASE IF NOT EXISTS xolo';
+    $conn->exec($DBsql);
+
+    $conn->query('use xolo');
+
+    // Create contact_form table if not exists
+    $sql = "CREATE TABLE IF NOT EXISTS contact_form (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            subject VARCHAR(255) NOT NULL,
+            message TEXT NOT NULL
+        )";
+    $conn->exec($sql);
+
+    $sql = "INSERT INTO contact_form (name, email, subject, message) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$name, $email, $subject, $message]);
+
+    echo 'Form data has been saved to the database';
+
+    $conn = null;
+} catch (Exception $e) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+}
 ?>
