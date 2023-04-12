@@ -72,20 +72,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $tableSql = "CREATE TABLE IF NOT EXISTS billing_form (
             id INT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            shipping_first_name VARCHAR(25),
-            shipping_last_name VARCHAR(25),
-            shipping_street VARCHAR(50),
-            shipping_appartment VARCHAR(50),
-            shipping_city VARCHAR(25),
+            shipping_first_name VARCHAR(255),
+            shipping_last_name VARCHAR(255),
+            shipping_street VARCHAR(255),
+            shipping_appartment VARCHAR(255),
+            shipping_city VARCHAR(255),
             shipping_post_code VARCHAR(6),
-            shipping_country VARCHAR(25),
-            billing_first_name VARCHAR(25),
-            billing_last_name VARCHAR(25),
-            billing_street VARCHAR(50),
-            billing_appartment VARCHAR(50),
-            billing_city VARCHAR(25),
-            billing_post_code VARCHAR(25),
-            billing_country VARCHAR(25)
+            shipping_country VARCHAR(255),
+            billing_first_name VARCHAR(255),
+            billing_last_name VARCHAR(255),
+            billing_street VARCHAR(255),
+            billing_appartment VARCHAR(255),
+            billing_city VARCHAR(255),
+            billing_post_code VARCHAR(6),
+            billing_country VARCHAR(255)
             )";
 
         $conn->exec($tableSql);

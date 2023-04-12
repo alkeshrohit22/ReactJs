@@ -61,19 +61,84 @@ function BillingForm() {
             billingApartment,
             billingCity,
             billingCountry,
-            billingZip,
-            email,
-            phoneNumber
+            billingZip
         } = formData;
 
-        if (!shippingFirstName || !shippingLastName || !shippingAddress || !shippingCity || !shippingCountry || !shippingZip || !shippingApartment) {
+        const zipCodeRegex = /^\d{6}$/; // Regex for 6-digit zip code
+        const nameRegex = /^[A-Za-z]+$/; // Regex for alphabetic names
+        const apartmentRegex = /^[A-Za-z0-9\s]+$/; // Regex for alphanumeric apartment names
+        const cityRegex = /^[A-Za-z\s]+$/; // Regex for alphabetic city names
+        const addressRegex = /^[A-Za-z0-9\s]+$/; // Regex for alphanumeric street address
+        const countryRegex = /^[A-Za-z\s]+$/; // Regex for alphabetic country names
+
+        if (!shippingFirstName || !shippingLastName || !shippingAddress || !shippingCity || !shippingCountry || !shippingApartment || !shippingZip) {
             alert("Please provide all shipping address information.");
             return false;
         }
 
+        if (!nameRegex.test(shippingFirstName) || !nameRegex.test(shippingLastName)) {
+            alert("Please provide valid first name and last name for shipping.");
+            return false;
+        }
+
+        if (!apartmentRegex.test(shippingApartment)) {
+            alert("Please provide a valid apartment name for shipping.");
+            return false;
+        }
+
+        if (!addressRegex.test(shippingAddress)) {
+            alert("Please provide a valid street address for shipping.");
+            return false;
+        }
+
+        if (!cityRegex.test(shippingCity)) {
+            alert("Please provide a valid city name for shipping.");
+            return false;
+        }
+
+        if (!countryRegex.test(shippingCountry)) {
+            alert("Please provide a valid country name for shipping.");
+            return false;
+        }
+
+        if (!zipCodeRegex.test(shippingZip)) {
+            alert("Please provide a valid 6-digit postal code for shipping.");
+            return false;
+        }
+
         // Check if billing address fields are filled out, if sameAddress is false
-        if (!formData.sameAddress && (!billingFirstName || !billingLastName || !billingAddress || !billingCity || !billingCountry || !billingZip || !billingApartment)) {
+        if (!formData.sameAddress && (!billingFirstName || !billingLastName || !billingAddress || !billingCity || !billingCountry || !billingApartment || !billingZip)) {
             alert("Please provide all billing address information.");
+            return false;
+        }
+
+        if (!formData.sameAddress && (!nameRegex.test(billingFirstName) || !nameRegex.test(billingLastName))) {
+            alert("Please provide valid first name and last name for billing.");
+            return false;
+        }
+
+        if (!formData.sameAddress && (!apartmentRegex.test(billingApartment))) {
+            alert("Please provide a valid apartment name for billing.");
+            return false;
+        }
+
+        if (!formData.sameAddress && (!addressRegex.test(billingAddress))) {
+            alert("Please provide a valid street address for billing.");
+            return false;
+        }
+
+        if (!formData.sameAddress && (!cityRegex.test(billingCity))) {
+            alert("Please provide a valid city name for billing.");
+            return false;
+        }
+
+        if (!formData.sameAddress && (!countryRegex.test(billingCountry))) {
+            alert("Please provide a valid country name for billing.");
+            return false;
+        }
+
+        if (!formData.sameAddress && (!zipCodeRegex.test(billingZip))) {
+            alert("Please provide a valid 6-digit postal code for billing.");
             return false;
         }
 

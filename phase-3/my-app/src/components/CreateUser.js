@@ -3,6 +3,7 @@ import axios from "axios";
 
 function CreateUser() {
   const [formData, setFormData] = useState({});
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -10,12 +11,28 @@ function CreateUser() {
 
     setFormData(values => ({...values, [name]:value}));
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-
-    axios.post("http://localhost:80/ReactJs/phase-3/my-app-backend/index.php", formData);
+    const valid = await validationForm();
+    if(valid) {
+      axios.post("http://localhost:80/ReactJs/phase-3/my-app-backend/index.php", formData);
+    }
     // console.log(formData)
   }
+
+  const validationForm = () => {
+    const {name, mobile, email} = formData;
+
+    // name regex for testing name
+    let nameReg = /^[A-Za-z\s]+$/;
+
+    if(!(nameReg.test(name))) {
+      setError('Name not valid!!!');
+      return false;
+    }
+    return true;
+  }
+
   return (
     <>
     <div className={'container'}>

@@ -31,7 +31,7 @@ try {
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'alkesh.rohit@sigmainfo.net';
-    $mail->Password = 'Alkesh@sigma22';
+    $mail->Password = 'Alkesh@Sigma22';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
