@@ -34,7 +34,7 @@ function PaymentForm() {
         e.preventDefault();
         if(valdiationForm()) {
             localStorage.clear();
-            window.location.href('/productpage');
+            window.location.href = '/productpage';
         }
     }
 
