@@ -90,16 +90,16 @@ function CartPage() {
                                 <td>{product.title}</td>
                                 <td>{product.price} Rs</td>
                                 <td>
-                                    <button onClick={() => handleQuantityDecrease(product.id)}>
+                                    <button className={'quantity-button'} onClick={() => handleQuantityDecrease(product.id)}>
                                         -
                                     </button>
                                     {product.quantity}
-                                    <button onClick={() => handleQuantityIncrease(product.id)}>
+                                    <button className={'quantity-button'} onClick={() => handleQuantityIncrease(product.id)}>
                                         +
                                     </button>
                                 </td>
                                 <td>
-                                    <button onClick={() => handleDelete(product.id)}>Delete</button>
+                                    <button className={'delete-button'} onClick={() => handleDelete(product.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))

@@ -19,7 +19,7 @@
 .table-div-table td {
     border: 1px solid #ccc;
     padding: 8px;
-    text-align: left;
+    text-align: center;
 }
 
 .table-div-table th {
@@ -35,16 +35,20 @@
 }
 
 .checkout-button {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     display: block;
-    width: 100%;
-    padding: 10px;
+    /*width: 100%;*/
+    /*padding: 10px;*/
+    padding-top: 5px;
+    padding-left: 10px;
     background-color: green;
     color: #fff;
     border: none;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 10px;
     transition: background-color 0.3s ease;
+    border: 1px solid white;
+    margin-left: 25px;
 }
 
 .checkout-button a {
@@ -58,4 +62,23 @@
 .checkout-button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+
+.quantity-button {
+    color: white;
+    background-color: grey;
+    padding-left: 15px;
+    border-radius: 10px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.delete-button {
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    border: 1px solid white;
+    padding-left: 15px;
+}
+.delete-button:hover {
+    background-color: darkred;
 }
