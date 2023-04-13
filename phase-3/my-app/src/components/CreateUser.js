@@ -100,6 +100,13 @@ function CreateUser() {
                       />
                     </td>
                   </tr>
+                  {error && (
+                      <tr>
+                        <td colSpan="2" className={'error-text'}>
+                          {error}
+                        </td>
+                      </tr>
+                  )}
                   <tr>
                     <td colSpan="2" align="right">
                       <button className={'submit-button'} type="submit">Submit</button>

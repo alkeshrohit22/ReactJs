@@ -102,6 +102,11 @@
 .input-field:valid {
     border: 2px solid #00ff00;
 }
+.error-text {
+    color: red;
+    text-align: center;
+    padding-left: 80px;
+}
 
 /* Responsive Styling */
 @media screen and (max-width: 480px) {

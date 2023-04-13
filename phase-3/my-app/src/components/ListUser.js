@@ -26,11 +26,17 @@ function ListUser() {
     }
 
     const deleteContact = (id) => {
-        axios
-            .delete(`http://localhost:80/ReactJs/phase-3/my-app-backend/index.php/${id}/delete`)
-            .then(function (response) {
-                getUsers();
-            });
+        const valid = window.confirm('Sure! Want to Delete ?');
+        if(valid) {
+            axios
+                .delete(`http://localhost:80/ReactJs/phase-3/my-app-backend/index.php/${id}/delete`)
+                .then(function (response) {
+                    getUsers();
+                });
+        } else {
+            getUsers();
+        }
+
     }
 
     return (

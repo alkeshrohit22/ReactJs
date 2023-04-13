@@ -47,3 +47,9 @@
 .delete-button:hover {
     background-color: #c82333;
 }
+
+.error-text {
+    color: red;
+    text-align: center;
+    padding-left: 80px;
+}
