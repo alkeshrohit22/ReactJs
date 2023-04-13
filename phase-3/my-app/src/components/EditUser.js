@@ -44,7 +44,7 @@ function EditUser() {
           .put(`http://localhost:80/ReactJs/phase-3/my-app-backend/index.php/${id}/edit`, inputs)
           .then(function (response) {
             console.log(response.data);
-            navigate('/');
+            navigate('/Home');
           })
           .catch(function (error) {
             console.log(error);

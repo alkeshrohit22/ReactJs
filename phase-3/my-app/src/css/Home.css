@@ -1,0 +1,122 @@
+/* Home.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-auth-none {
+    margin-top: 20px;
+}
+
+.container-auth {
+    margin-top: 40px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 32px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.nav-menu {
+    margin-top: 20px;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-item {
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-item:hover {
+    transform: scale(1.1);
+}
+
+.nav-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.list-container {
+    margin-top: 30px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+.list-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.list-item h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.list-item p {
+    font-size: 16px;
+    color: #777;
+}
+
+.list-item button {
+    margin-left: auto;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.list-item button:hover {
+    background-color: #0056b3;
+}
+
+/* Styles for span links */
+.container-auth-none span,
+.container-auth span {
+    margin-right: 10px;
+}
+
+.container-auth-none span a,
+.container-auth span a {
+    color: #007bff;
+    text-decoration: none;
+    color: black;
+}
+
+.container-auth-none span a:hover,
+.container-auth span a:hover {
+    text-decoration: underline;
+    color: blueviolet;
+}

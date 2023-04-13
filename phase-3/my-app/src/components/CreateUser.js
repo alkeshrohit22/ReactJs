@@ -23,7 +23,7 @@ function CreateUser() {
       axios.post("http://localhost:80/ReactJs/phase-3/my-app-backend/index.php", formData)
           .then(function (response) {
             console.log(response.data);
-            navigate('/'); // navigate page to home page
+            navigate('/Home');
           });
     } else {
       console.log(error);

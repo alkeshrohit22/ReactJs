@@ -1,32 +1,43 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import { BrowserRouter, Route, Routes, Link, Router } from 'react-router-dom';
 import './App.css';
-import ListUser from "./components/ListUser";
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import SignUp from './components/SignUp/SignUp';
+
+import { auth } from "./firebase";
 import CreateUser from "./components/CreateUser";
 import EditUser from "./components/EditUser";
+import ListUser from "./components/ListUser";
 
 function App() {
+
+    const [userEmail, setUserEmail] = useState("");
+    const [userName, setUserName] = useState("");
+
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUserName(user.displayName);
+                setUserEmail(user.email);
+            } else {
+                setUserEmail("");
+                setUserName("");
+            }
+        });
+    }, []);
+
     return (
         <div className="App">
-            <h1>React CRUD Operation using PHP API and ReactJs</h1>
             <BrowserRouter>
-                <nav className="nav-menu">
-                    <ul className="nav-list">
-                        <li className="nav-item">
-                            <Link to={"/"} className="nav-link">List Contact</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to={"create"} className="nav-link">Create Contact</Link>
-                        </li>
-                    </ul>
-                </nav>
-                <div className="content">
-                    <Routes>
-                        <Route index element={<ListUser />}></Route>
-                        <Route path={'create'} element={<CreateUser />}></Route>
-                        <Route path={':id/edit'} element={<EditUser />}></Route>
-                    </Routes>
-                </div>
+                <Routes>
+                    <Route path={'/Home'} element={<Home name={userName} email={userEmail} />} />
+                    <Route path={'/Login'} element={<Login />} />
+                    <Route index element={<SignUp />} />
+                    <Route path={'/create'} element={<CreateUser />} />
+                    <Route path={"Home/:id/edit"} element={<EditUser />} />
+                    <Route path={"/list"} element={<ListUser />} />
+                </Routes>
             </BrowserRouter>
         </div>
     );
