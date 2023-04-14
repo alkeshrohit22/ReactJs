@@ -1,7 +1,21 @@
 .list-user-container {
     margin-top: 20px;
+    position: relative;
 }
-
+.logout-button-div {
+    position: absolute;
+    top: -261px;
+    left: 640px;
+}
+.logout-button-div button {
+    color: white;
+    background-color: blueviolet;
+    border: 1px solid white;
+}
+.logout-button-div button:hover {
+    color: black;
+    background-color: red;
+}
 .table-container {
     overflow-x: auto;
 }

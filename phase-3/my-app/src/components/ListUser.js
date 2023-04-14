@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../css/ListUser.css';
 
+import {auth} from "../firebase";
+
 function ListUser() {
     const [contacts, setContacts] = useState([]);
 
@@ -36,11 +38,23 @@ function ListUser() {
         } else {
             getUsers();
         }
-
     }
+
+    const handleLogout = () => {
+        auth.signOut()
+            .then(() => {
+                // Log out successful
+                console.log("Logged out successfully");
+            })
+            .catch((error) => {
+                // An error occurred
+                console.error("Error logging out:", error);
+            });
+    };
 
     return (
         <div className="list-user-container">
+            <div className={'logout-button-div'}><button onClick={handleLogout}>Logout</button></div>
             <h2>List User</h2>
             <div className="table-container">
                 <table className="user-table">
