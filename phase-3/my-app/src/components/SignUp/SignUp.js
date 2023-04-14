@@ -16,31 +16,53 @@ function SignUp() {
   const [errorMsg, setErrorMsg] = useState("");
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
-  const handleSubmission = () => {
+  const handleSubmission = (event) => {
       console.log(values);
-    if (!values.name || !values.email || !values.pass) {
-      setErrorMsg("Fill all fields");
-      return;
-    }
-    setErrorMsg("");
+      event.preventDefault();
 
-    setSubmitButtonDisabled(true);
+      const valid = validationForm();
 
-    createUserWithEmailAndPassword(auth, values.email, values.pass)
-        .then(async (res) => {
-            // console.log(res);
-          setSubmitButtonDisabled(false);
-          const user = res.user;
-          await updateProfile(user, {
-            displayName: values.name,
-          });
-          navigate("/Login");
-        })
-        .catch((err) => {
-          setSubmitButtonDisabled(false);
-          setErrorMsg(err.message);
-        });
+      if(valid) {
+
+          setErrorMsg("");
+          setSubmitButtonDisabled(true);
+
+          createUserWithEmailAndPassword(auth, values.email, values.pass)
+              .then(async (res) => {
+                  //console.log(res);
+                  setSubmitButtonDisabled(false);
+                  const user = res.user;
+                  await updateProfile(user, {
+                      displayName: values.name,
+                  });
+                  navigate("/Login");
+              })
+              .catch((err) => {
+                  setSubmitButtonDisabled(false);
+                  setErrorMsg(err.message);
+              });
+      } else {
+          console.log(errorMsg);
+      }
+
   };
+
+  const validationForm = () => {
+      let nameReg = /^[A-Za-z\s]+$/; //name valdiation regex
+      if (!values.name || !values.email || !values.pass) {
+          setErrorMsg("Fill all fields");
+          return;
+      }
+
+      if (!nameReg.test(values.name)) {
+          setErrorMsg('Name not valid !!!');
+          return false;
+      }
+
+      return true;
+    }
+
+
   return (
       <div className={'container-signup'}>
         <div className={'innerBox'}>
@@ -55,6 +77,7 @@ function SignUp() {
           />
           <InputControll
               label="Email"
+              type={'email'}
               placeholder="Enter email address"
               onChange={(event) =>
                   setValues((prev) => ({ ...prev, email: event.target.value }))
@@ -62,6 +85,7 @@ function SignUp() {
           />
           <InputControll
               label="Password"
+              type={'password'}
               placeholder="Enter password"
               onChange={(event) =>
                   setValues((prev) => ({ ...prev, pass: event.target.value }))

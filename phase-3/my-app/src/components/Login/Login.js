@@ -11,33 +11,44 @@ function Login() {
   const navigate = useNavigate(); //navigation
   const [values, setValues] = useState({
     email: "",
-    pass: "",
+    pass: ""
   });
 
   const [errorMsg, setErrorMsg] = useState(""); //storing error messages
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
-  const handleSubmission = () => {
+  const handleSubmission = (event) => {
+    event.preventDefault();
+    const valid = validationForm();
+
+    if (valid) {
+      setErrorMsg("");
+
+      setSubmitButtonDisabled(true);
+
+      signInWithEmailAndPassword(auth, values.email, values.pass ,values.name)
+          .then(async (res) => {
+            setSubmitButtonDisabled(false);
+            navigate("/Home");
+          })
+          .catch((err) => {
+            setSubmitButtonDisabled(false);
+            setErrorMsg(err.message);
+          });
+    } else {
+      console.log(errorMsg);
+    }
+  };
+
+  const validationForm = () => {
+
     if (!values.email || !values.pass) {
       setErrorMsg("Fill all fields");
-      return;
+      return false;
     }
-    setErrorMsg("");
+    return true;
+  }
 
-    setSubmitButtonDisabled(true);
-
-
-    signInWithEmailAndPassword(auth, values.email, values.pass)
-        .then(async (res) => {
-          setSubmitButtonDisabled(false);
-
-          navigate("/Home");
-        })
-        .catch((err) => {
-          setSubmitButtonDisabled(false);
-          setErrorMsg(err.message);
-        });
-  };
   return (
     <>
       <div className={'login-container'}>
@@ -53,6 +64,7 @@ function Login() {
           />
           <InputControll
               label="Password"
+              type={"password"}
               onChange={(event) =>
                   setValues((prev) => ({ ...prev, pass: event.target.value }))
               }

@@ -9,7 +9,6 @@ function Home(props){
     const [email, setEmail] = useState('');
 
     useEffect(() => {
-        // console.log(props);
         setName(props.name);
         setEmail(props.email)
     }, [props.name, props.email]);
